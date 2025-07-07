@@ -1,7 +1,6 @@
 import * as express from 'express';
 import { validation } from '../../utils/validation';
 import { login, register } from '../../controllers/auth.controller';
-import { userAuth } from '../../middlewares/auth.middleware';
 
 const router = express.Router();
 
@@ -15,7 +14,6 @@ router.post('/register',
 );
 
 router.post('/login',
-    userAuth,
     validation({
         email: 'required|email',
         password: 'required'

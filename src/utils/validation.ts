@@ -26,7 +26,7 @@ export const validate =
 
         const errors: string[] = [];
 
-        for (const key of v.errors) {
+        for (let key in v.errors) {
             errors.push(v.errors[key].message);
         }
 

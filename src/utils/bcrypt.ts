@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
 export const hashText = async (text: string): Promise<string> => {
     const defaultSalt = await bcrypt.genSalt(10);

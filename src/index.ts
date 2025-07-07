@@ -4,8 +4,10 @@ import mongoose from 'mongoose';
 import * as cors from 'cors';
 import { CorsOptions } from 'cors';
 import appConfig from './config/app.config';
-import authRoutes from './routes/auth/auth.routes';
 import globalErrorHandler from './middlewares/global-error-handler.middleware';
+// routes import 
+import authRoutes from './routes/auth/auth.routes';
+import categoryRoutes from './routes/categories/categories.routes';
 
 const app = express();
 
@@ -23,16 +25,28 @@ mongoose.connect(appConfig.mongodbUri)
 
 
 // Routes
-// Auth Route
+// Auth Routes
 app.use('/api/auth', authRoutes);
 
+// Categories Routes
+app.use('/api/categories', categoryRoutes);
+
 // Main Route
-app.use('/', (req: Request, res: Response) => {
+app.get('/', (req: Request, res: Response) => {
     res.status(200).json({
         success: true,
         message: 'Chatting app is running ...'
     });
 });
+
+// // Handle Not found Routes
+// app.all('*', (req: Request, res: Response) => {
+//     res.status(404).json({
+//         success: false,
+//         message: 'Route Not Found',
+//         errors: [`Can not find ${req.originalUrl}`]
+//     });
+// });
 
 // Global Error Handler
 app.use(globalErrorHandler);

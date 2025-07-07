@@ -1,6 +1,8 @@
-import express, { Request, Response } from 'express';
+import * as express from 'express';
+import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import cors, { CorsOptions } from 'cors';
+import * as cors from 'cors';
+import { CorsOptions } from 'cors';
 import appConfig from './config/app.config';
 import authRoutes from './routes/auth/auth.routes';
 import globalErrorHandler from './middlewares/global-error-handler.middleware';

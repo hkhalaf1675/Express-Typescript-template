@@ -1,16 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verifyToken } from "../utils/jwt";
 import User from "../models/user.model";
-
-// Extend Express Request interface to include 'user'
-declare global {
-    namespace Express {
-        interface Request {
-            user?: typeof User.prototype;
-        }
-    }
-}
-
 export const userAuth = async(req: Request, res: Response, next: NextFunction) => {
     try {
         let token: string | undefined;
@@ -40,7 +30,7 @@ export const userAuth = async(req: Request, res: Response, next: NextFunction) =
             return;
         }
 
-        req.user = currentUser;
+        req['user'] = currentUser;
         next();
     } catch (error) {
         res.status(401).json({

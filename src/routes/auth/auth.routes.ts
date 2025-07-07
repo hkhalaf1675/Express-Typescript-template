@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import { validation } from '../../utils/validation';
 import { login, register } from '../../controllers/auth.controller';
 import { userAuth } from '../../middlewares/auth.middleware';

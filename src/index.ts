@@ -39,14 +39,14 @@ app.get('/', (req: Request, res: Response) => {
     });
 });
 
-// // Handle Not found Routes
-// app.all('*', (req: Request, res: Response) => {
-//     res.status(404).json({
-//         success: false,
-//         message: 'Route Not Found',
-//         errors: [`Can not find ${req.originalUrl}`]
-//     });
-// });
+// Handle Not found Routes
+app.use((req: Request, res: Response) => {
+    res.status(404).json({
+        success: false,
+        message: 'Route Not Found',
+        errors: [`Can not find ${req.originalUrl}`]
+    });
+});
 
 // Global Error Handler
 app.use(globalErrorHandler);
